@@ -24,7 +24,7 @@ This repository contains only the approved public site, optimized web media and 
 GitHub Pages deployment remains pending until the owner approves the publishing
 source and manual deployment.
 
-The site is configured for `https://arnautova92-create.github.io`. The deployment
+The site is configured for `https://andreiarnautov.com`. The deployment
 workflow is manual-only, uses least-privilege job permissions and pins every
-GitHub Action to an immutable commit SHA. A future custom domain can replace the
+GitHub Action to an immutable commit SHA. The custom domain replaces the
 technical address without changing the content architecture.
