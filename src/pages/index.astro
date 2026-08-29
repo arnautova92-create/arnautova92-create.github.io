@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const works = [
+  {
+    href: "/zewa",
+    brand: "Zewa",
+    title: "Unfair Game",
+    cover: "/media/_covers/zewa-case-film.jpg",
+    alt: "Кадр из кейс-фильма Zewa: персонаж стоит на финишной клетке настольной игры",
+  },
+  {
+    href: "/neskazki",
+    brand: "X5",
+    title: "НЕсказки",
+    cover: "/media/_covers/neskazki-cover.jpg",
+    alt: "Иллюстрированная обложка подкаста НЕсказки с животными у открытого окна",
+    focus: "50% 12%",
+  },
+  {
+    href: "/barcode-mysteries",
+    brand: "X5",
+    title: "Закулисье ритейла",
+    cover: "/media/_covers/barcode-hosts.jpg",
+    alt: "Саша Сулим и Леонид Каневский на обложке подкаста",
+  },
+  {
+    href: "/megafon",
+    brand: "Megafon",
+    title: "Video",
+    cover: "/media/_covers/megafon-speed.jpg",
+    alt: "Кадр из «Скорости»: Азамат смотрит на смартфон в прихожей",
+  },
+  {
+    href: "/baltika",
+    brand: "Baltika 0",
+    title: "Fruity",
+    cover: "/media/baltika/grapefruit.jpg",
+    alt: "Грейпфрутовая Baltika 0: рыжая девушка с банкой и мнемоника оГОоо",
+  },
+  {
+    href: "/beeline",
+    brand: "Beeline",
+    title: "Video",
+    cover: "/media/_covers/beeline-gigapad.jpg",
+    alt: "Кадр из «Гигапада»: семья на веранде ловит снежинки «ГБ»",
+  },
+  {
+    href: "/wink-80s",
+    brand: "Wink",
+    title: "80's Cinema Theatre",
+    cover: "/media/_covers/wink-pavilion.jpg",
+    alt: "Павильон Wink на Comic Con: неоновая маркиза, касса и машина 1980-х",
+  },
+  {
+    href: "/ikea-copywriting",
+    brand: "IKEA",
+    title: "Коробка, которая мечтала летать",
+    cover: "/media/ikea-copywriting/plane-field.png",
+    alt: "Картонный самолётик из коробки IKEA",
+    light: true,
+  },
+  {
+    href: "/crave",
+    brand: "CRAVE",
+    title: "Crave test",
+    cover: "/media/crave/lisovets-fedor.jpg",
+    alt: "Владислав Лисовец поднимает кота Фёдора над головой",
+    focus: "50% 24%",
+  },
+];
+---
+
+<BaseLayout>
+  <div class="index" id="work">
+    <ul class="work-index" aria-label="Избранные работы">
+      {works.map((work, index) => (
+        <li>
+          <a class="work-card" href={work.href}>
+            <img
+              class:list={["work-cover", { "work-cover-light": work.light }]}
+              src={work.cover}
+              alt={work.alt}
+              style={work.focus ? `object-position: ${work.focus}` : undefined}
+            />
+            <span class="work-title">
+              <span class="work-number">{String(index + 1).padStart(2, "0")}</span>
+              <span class="work-meta">
+                <span class="work-brand">{work.brand}</span>
+                <span class="work-dot" aria-hidden="true">·</span>
+                <span class="work-name">{work.title}</span>
+              </span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

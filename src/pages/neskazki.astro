@@ -1,0 +1,117 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const excerpts = [
+  ["excerpt-bull.mp3", "Стратегия быка", "0:28"],
+  ["excerpt-peacock.mp3", "Стратегия павлина", "0:35"],
+];
+
+const platforms = [
+  ["Apple Podcasts", "https://podcasts.apple.com/ru/podcast/id1817323602"],
+  ["Все платформы", "https://podcast.ru/1817323602"],
+  ["Страница проекта", "https://tolk.earth/neskazki"],
+];
+
+const episodes = [
+  ["episode-turtle.mp3", "Стратегия черепахи", "4:30", "animal-turtle.png", "Розовый силуэт черепахи"],
+  ["episode-bull.mp3", "Стратегия быка", "3:44", "animal-bull.png", "Коричневый силуэт быка"],
+  ["episode-ant.mp3", "Стратегия муравья", "4:01", "animal-ant.png", "Чёрный силуэт муравья"],
+  ["episode-eagle.mp3", "Стратегия орла", "4:48", "animal-eagle.png", "Жёлтый силуэт орла"],
+  ["episode-peacock.mp3", "Стратегия павлина", "4:19", "animal-peacock.png", "Синий силуэт павлина"],
+];
+
+const backstage = [
+  ["backstage-01.mp4", "poster-backstage.jpg", "Тизер из студии", "0:30"],
+  ["burunov-invitation.mp4", "poster-invitation.jpg", "Приглашение Бурунова", "1:00"],
+];
+---
+
+<BaseLayout title="X5 · НЕсказки · Andrei Arnautov">
+  <article class="case" id="neskazki">
+    <h1><MetaLine parts={["X5", "НЕсказки"]} /></h1>
+
+    <section class="album" aria-label="Обложка и избранные отрывки">
+      <video
+        class="album-cover"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        aria-label="Анимированная обложка НЕсказок"
+      >
+        <source src="/media/neskazki/animated-cover.mp4" type="video/mp4" />
+      </video>
+
+      <div class="album-tracks">
+        {excerpts.map(([file, title, length]) => (
+          <div class="album-track">
+            <p class="track-label"><MetaLine parts={["Отрывок", title, length]} /></p>
+            <MediaPlayer kind="audio" src={`/media/neskazki/${file}`} label={title} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        Эта история началась с того, что X5 запустила конкурс: устройся на работу
+        и выиграй акции компании. Нам предстояло объяснить будущим сотрудникам, в
+        чём ценность инвестирования. Но что, если посмотреть на инвестирование
+        немного шире? Ведь карьера — это тоже своего рода инвестиция в будущее.
+        Так появились НЕсказки — короткие истории о том, что вложенные в карьеру
+        время и усилия всегда окупаются. И в X5 это тру стори, а не сказки.
+      </p>
+      <p>
+        НЕсказки высокохудожественно озвучил Сергей Бурунов. В каждой истории —
+        свой герой и своя стратегия инвестирования в карьеру: трудолюбивый
+        муравей, рассудительная черепаха, стойкий бык, прозорливый орёл и
+        уверенный в себе павлин.
+      </p>
+    </section>
+
+    <section class="backstage-pair" aria-label="Видео проекта">
+      {backstage.map(([file, poster, label, length]) => (
+        <figure>
+          <MediaPlayer
+            kind="video"
+            src={`/media/neskazki/${file}`}
+            poster={`/media/neskazki/${poster}`}
+            label={label}
+          />
+          <figcaption class="track-label"><MetaLine parts={[label, length]} /></figcaption>
+        </figure>
+      ))}
+    </section>
+
+    <section class="episode-list" aria-label="Все пять НЕсказок">
+      <p class="chapter-label">Послушать все пять НЕсказок</p>
+      {episodes.map(([file, title, length, animal, alt]) => (
+        <div class="episode-row">
+          <img class="episode-animal" src={`/media/neskazki/${animal}`} alt={alt} />
+          <p class="episode-title"><MetaLine parts={[title, length]} /></p>
+          <MediaPlayer kind="audio" src={`/media/neskazki/${file}`} label={title} />
+        </div>
+      ))}
+
+      <p class="episode-platforms">
+        {platforms.map(([label, href]) => (
+          <a href={href} rel="noreferrer" target="_blank">{label}&nbsp;&gt;&gt;&gt;</a>
+        ))}
+      </p>
+    </section>
+
+    <section class="facts" aria-label="Результаты">
+      <p><MetaLine parts={["Результаты", "89% дослушали истории до конца."]} /></p>
+      <p><MetaLine parts={["Результаты", "1,79 млн охвата в медиа."]} /></p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/zewa", label: "предыдущая работа" }}
+      next={{ href: "/barcode-mysteries", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const films = [
+  ["gigapad.mp4", "poster-gigapad.jpg", "«Гигапад»", "0:30"],
+  ["devices.mp4", "poster-devices.jpg", "«Три равно один»", "0:20"],
+];
+---
+
+<BaseLayout title="Beeline · Video · Andrei Arnautov">
+  <article class="case" id="beeline">
+    <h1><MetaLine parts={["Beeline", "Video"]} /></h1>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src={`/media/beeline/${films[0][0]}`}
+        poster={`/media/beeline/${films[0][1]}`}
+        label={films[0][2]}
+      />
+      <figcaption class="track-label">
+        <MetaLine parts={["Ролик", films[0][2], films[0][3]]} />
+      </figcaption>
+    </figure>
+
+    <section class="story-grid" aria-label="Описание «Гигапада»">
+      <p>
+        Билайн перебил новогоднее предложение конкурентов, подарив клиентам
+        целый терабайт.
+      </p>
+      <p>Это была неожиданная выгода, которая свалилась как снег на голову!</p>
+    </section>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src={`/media/beeline/${films[1][0]}`}
+        poster={`/media/beeline/${films[1][1]}`}
+        label={films[1][2]}
+      />
+      <figcaption class="track-label">
+        <MetaLine parts={["Ролик", films[1][2], films[1][3]]} />
+      </figcaption>
+    </figure>
+
+    <section class="story-grid story-grid-tail" aria-label="Описание «Три равно один»">
+      <p>Сложно поверить, но в билайне 3&nbsp;=&nbsp;1.</p>
+      <p>Смартфон, аксессуары и связь — только по цене смартфона.</p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/ikea-copywriting", label: "предыдущая работа" }}
+      next={{ href: "/crave", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

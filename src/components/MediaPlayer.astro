@@ -1,0 +1,48 @@
+---
+interface Props {
+  kind: "audio" | "video";
+  src: string;
+  label: string;
+  poster?: string;
+}
+
+const { kind, src, label, poster } = Astro.props;
+---
+
+<div class="player" data-player>
+  {kind === "video" ? (
+    <video
+      src={src}
+      poster={poster}
+      playsinline
+      preload="metadata"
+      controls
+      data-player-media
+    />
+  ) : (
+    <audio src={src} preload="metadata" controls data-player-media />
+  )}
+  <div class="transport">
+    <button
+      type="button"
+      class="transport-key"
+      aria-label={`Играть — ${label}`}
+      data-player-toggle
+    >
+      <span class="glyph-play" data-player-glyph></span>
+    </button>
+    <div
+      class="transport-track"
+      role="slider"
+      tabindex="0"
+      aria-label={`Позиция — ${label}`}
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="0"
+      data-player-track
+    >
+      <div class="transport-fill" data-player-fill></div>
+    </div>
+    <span class="transport-time" data-player-time>0:00 / 0:00</span>
+  </div>
+</div>

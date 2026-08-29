@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const films = [
+  ["speed.mp4", "poster-speed.jpg", "«Скорость»", "0:15"],
+  ["hologram.mp4", "poster-hologram.jpg", "«Выгода»", "0:15"],
+  ["special-reducer.mp4", "poster-special-reducer.jpg", "«Спецуменьшитель»", "0:15"],
+];
+---
+
+<BaseLayout title="Megafon · Video · Andrei Arnautov">
+  <article class="case" id="megafon">
+    <h1><MetaLine parts={["Megafon", "Video"]} /></h1>
+
+    <section class="film-series" aria-label="Ролики «Скорость» и «Выгода» с общим описанием">
+      <div class="film-series-media">
+        {films.slice(0, 2).map(([file, poster, title, length]) => (
+          <figure class="film-single">
+            <MediaPlayer
+              kind="video"
+              src={`/media/megafon/${file}`}
+              poster={`/media/megafon/${poster}`}
+              label={title}
+            />
+            <figcaption class="track-label">
+              <MetaLine parts={["Ролик", title, length]} />
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="story-grid film-series-description">
+        <p>
+          МегаФон разработал креативную рамку «Спецагенты», и каждый рекламный
+          ролик становился продолжением детективного сериала.
+        </p>
+        <p>
+          Чтобы рассказать о быстром и стабильном интернете в тарифе «Для дома»,
+          мы переместились к Азамату домой.
+        </p>
+      </div>
+    </section>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src={`/media/megafon/${films[2][0]}`}
+        poster={`/media/megafon/${films[2][1]}`}
+        label={films[2][2]}
+      />
+      <figcaption class="track-label">
+        <MetaLine parts={["Ролик", films[2][2], films[2][3]]} />
+      </figcaption>
+    </figure>
+
+    <section class="story-grid story-grid-tail" aria-label="Описание «Спецуменьшителя»">
+      <p>
+        Тем временем на работе Азамат тестировал новый Спецуменьшитель, который
+        и привёл к уменьшению цены на домашний интернет и ТВ.
+      </p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/crave", label: "предыдущая работа" }}
+      next={{ href: "/baltika", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

@@ -1,0 +1,46 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+---
+
+<BaseLayout title="Zewa · Unfair Game · Andrei Arnautov">
+  <article class="case" id="zewa">
+    <h1><MetaLine parts={["Zewa", "Unfair Game"]} /></h1>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src="/media/zewa/case-film-en.mp4"
+        poster="/media/zewa/game-board.jpg"
+        label="Кейс-фильм Zewa Unfair Game"
+      />
+    </figure>
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        В 2020 мы оставались дома. Это значит, что работы по дому прибавилось. И
+        большая часть этой работы ложилась на женщин. Чтобы поговорить о
+        несправедливом распределении домашних обязанностей, мы вместе с Zewa
+        выпустили настольную игру с несправедливыми правилами.
+      </p>
+      <p>
+        В них женским фигуркам приходилось в два раза сложнее. Теперь мужчины
+        могли прочувствовать, каково иметь работу и домашнюю работу.
+      </p>
+    </section>
+
+    <section class="facts" aria-label="Результаты и награды">
+      <p><MetaLine parts={["Результаты", "+31% к обсуждениям гендерного равноправия."]} /></p>
+      <p><MetaLine parts={["Результаты", "58% начали обсуждать распределение обязанностей в своей семье."]} /></p>
+      <p><MetaLine parts={["Результаты", "+30% к ассоциации «бренд с близкой мне миссией»."]} /></p>
+      <p><MetaLine parts={["Награды", "2 золота, 1 серебро и специальный диплом за вклад в достижение Целей устойчивого развития ООН — Effie Awards Russia 2021."]} /></p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/", label: "все работы" }}
+      next={{ href: "/neskazki", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

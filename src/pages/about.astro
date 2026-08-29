@@ -1,0 +1,136 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const byCase = [
+  {
+    project: "Zewa — Unfair Game",
+    rows: [
+      ["2021", "Effie Awards Russia", "Золото — «Корпоративная репутация»"],
+      ["2021", "Effie Awards Russia", "Золото — «Позитивный вклад в общество и устойчивое развитие»"],
+      ["2021", "Effie Awards Russia", "Серебро — «Товары для гигиены и здоровья»"],
+      ["2021", "Effie Awards Russia", "Специальный диплом — Цели устойчивого развития ООН"],
+    ],
+  },
+  {
+    project: "X5 — Закулисье ритейла",
+    rows: [
+      ["2025", "МИКС Россия", "Бронза — Best Use of Digital Audio Advertising"],
+      ["2025", "Премия РАСО", "Победа в номинации «Красота игры»"],
+      ["2025", "PROBA Awards", "Шорт-лист — маркетинговые коммуникации"],
+      ["2025", "PROBA Awards", "Шорт-лист — HR-бренд"],
+      ["2025", "PROBA Awards", "Шорт-лист — инфлюенс-маркетинг"],
+    ],
+  },
+  {
+    project: "X5 — «Давайте уже после праздников»",
+    rows: [
+      ["2025", "E+ Awards", "Бронза — сезонный маркетинг"],
+      ["2025", "Red Apple", "Шорт-лист — краткосрочная кампания"],
+      ["2025", "Red Apple", "Шорт-лист — прямая коммуникация"],
+      ["2025", "Red Apple", "Шорт-лист — ambient-медиа"],
+      ["2025", "Silver Mercury", "Шорт-лист — Seasonal Marketing"],
+      ["2025", "Silver Mercury", "Шорт-лист — Direct & CRM Marketing Tools"],
+      ["2025", "PROBA Awards", "Шорт-лист — «Реакция на событие»"],
+    ],
+  },
+  {
+    project: "Лента — «МАМАгазин»",
+    rows: [["2025", "Silver Mercury", "Бронза — Best Experiential Marketing Campaign"]],
+  },
+  {
+    project: "Лента — «Сам решу и без гаданий»",
+    rows: [
+      ["2026", "Silver Mercury", "Шорт-лист — розничная торговля"],
+      ["2026", "E+ Awards", "Финалист — креативный спецпроект"],
+    ],
+  },
+  {
+    project: "Другие работы",
+    rows: [
+      ["—", "ADCR Awards", "Серебро — Spotify"],
+      ["—", "ADCR Awards", "Шорт-лист — TELE2"],
+      ["—", "Fakestival", "Best Digital Work — Doc+, «Shazam your cough»"],
+      ["—", "Young Lions Russia", "Финалист — Film"],
+    ],
+  },
+];
+
+const experience = [
+  ["Rodnya Creative PR Studio", "Creative Group Head", "02.2025—н.в."],
+  ["Beeline", "Senior Copywriter", "12.2023—02.2025"],
+  ["Hype Factory", "Creative Copywriter", "02.2023—12.2023"],
+  ["GG Agency", "Senior Creative Copywriter", "08.2022—02.2023"],
+  ["Instinct", "Creative Copywriter", "02.2021—03.2022"],
+  ["RODNYA PR Studio", "Creative Copywriter", "02.2020—02.2021"],
+  ["Red Keds", "Creative Copywriter", "05.2018—12.2019"],
+  ["iWill", "Creative Copywriter", "09.2017—04.2018"],
+  ["Sensitive Brands", "Creative Copywriter", "01.2017—09.2017"],
+  ["Freelance", "", "11.2016—н.в."],
+];
+---
+
+<BaseLayout title="About · Andrei Arnautov">
+  <article class="case" id="about">
+    <h1>Привет! Не спишь?</h1>
+
+    <section class="about-hero" aria-label="Обо мне">
+      <div class="about-copy">
+        <p>
+          Я креативный лид и копирайтер. Десять лет придумывал сам и руководил
+          разработкой идей для рекламных кампаний, роликов, подкастов,
+          спецпроектов, ивентов, инфлюенс и других форматов. Особенно мне
+          нравится, когда формат помогает идее раскрыться и заиграть.
+        </p>
+        <p>
+          За это время я работал в агентствах и инхаус-команде, курировал
+          студентов в креативной школе и иногда читал лекции. Воспринимаю
+          рекламу как современную версию историй у костра. Это наш способ
+          эмоционально вовлечься и почувствовать принадлежность.
+        </p>
+        <p>
+          Вне рекламы исследую нейросети и кино, вдохновляюсь повседневностью и
+          запускаю личные проекты. Так появился бренд одежды Overthinking.
+        </p>
+      </div>
+
+      <div class="about-photo-frame">
+        <img src="/media/about/portrait.webp" alt="Андрей Арнаутов с вязанием в руках" />
+      </div>
+    </section>
+
+    <div class="about-ledger">
+      <section class="awards" aria-label="Награды">
+        <p class="chapter-label">Награды</p>
+        {byCase.map((group) => (
+          <div class="award-group">
+            <p class="award-project">{group.project}</p>
+            <div class="award-lines">
+              {group.rows.map(([year, festival, result]) => (
+                <p class="award-row">
+                  <span class="award-year">{year}</span>
+                  <span class="award-festival">{festival}</span>
+                  <span class="award-result">{result}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      <section class="experience" aria-label="Опыт в рекламе">
+        <p class="chapter-label">Опыт в рекламе</p>
+        {experience.map(([company, role, period]) => (
+          <div class="experience-entry">
+            <p class="experience-company">{company}</p>
+            {role && <p class="experience-role">{role}</p>}
+            <p class="experience-period">{period}</p>
+          </div>
+        ))}
+      </section>
+    </div>
+
+    <footer class="case-navigation">
+      <a href="/">&lt;&lt;&lt; все работы</a>
+    </footer>
+  </article>
+</BaseLayout>

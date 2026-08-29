@@ -1,0 +1,94 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const eventPhotos = [
+  ["event-001.jpg", "Косплеер в маске Майкла Майерса у неоновой афиши «Индианы Джонса»"],
+  ["event-003.jpg", "Camaro и красный пожарный гидрант у фасада кинотеатра"],
+  ["event-004.jpg", "Стена павильона с неоновыми киноафишами и граффити"],
+  ["event-005.jpg", "Персонал павильона у стойки кассы"],
+  ["event-006.jpg", "Двое из команды павильона на капоте Camaro"],
+  ["event-007.jpg", "Граффити Wink на кирпичном углу павильона"],
+  ["event-008.jpg", "Стройка павильона: команда собирает кирпичный фасад"],
+  ["event-012.jpg", "Гость в образе Марти Макфлая у афиши «Назад в будущее»"],
+  ["event-017.jpg", "Гость с маской в руках у неоновых киноафиш"],
+  ["event-018.jpg", "Гостья в образе Одиннадцать с велосипедом"],
+];
+---
+
+<BaseLayout title="Wink · 80's Cinema Theatre · Andrei Arnautov">
+  <article class="case" id="wink-80s">
+    <h1><MetaLine parts={["Wink", "80's Cinema Theatre"]} /></h1>
+
+    <img
+      class="case-hero-image"
+      src="/media/wink-80s/hero.jpg"
+      alt="Павильон Wink с кинотеатром 1980-х на Comic Con Russia"
+    />
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        Стенд для онлайн-кинотеатра Wink на Comic Con Russia, который стал нашим
+        признанием в любви к поп-культуре. Мы построили работающий кинотеатр
+        1980-х и кусок американской улицы вокруг него — с неоновой вывеской,
+        кассой, киноафишами и машиной той эпохи.
+      </p>
+      <p>
+        Так Wink заявили о себе как о платформе с развлекательным контентом. И
+        если в 80-х за развлечением нужно было идти в видеопрокат, то сейчас
+        достаточно включить Wink.
+      </p>
+    </section>
+
+    <section class="wink-reference-pair" aria-label="Отсылки к поп-культуре">
+      <img
+        src="/media/wink-80s/reference-detail.jpg"
+        alt="Отсылка к Марти Макфлаю рядом с неоновыми киноафишами"
+      />
+      <img
+        src="/media/wink-80s/costume.jpg"
+        alt="Костюмированный гость Comic Con в пространстве кинотеатра 1980-х"
+      />
+    </section>
+
+    <section class="wink-process" aria-label="Манифест и билеты">
+      <img
+        src="/media/wink-80s/myers-ticket.jpg"
+        alt="Гость в образе Майкла Майерса рассматривает билет у кассы кинотеатра"
+      />
+      <div class="wink-process-copy">
+        <p>
+          Мы написали манифест о любви к поп-культуре и наполнили пространство
+          стенда отсылками к культовым фильмам. Например, стилизованные билеты с
+          промокодом, в которых читалась дата реальной премьеры в 80-х. Аудитория
+          оценила.
+        </p>
+      </div>
+    </section>
+
+    <section class="wink-design-pair" aria-label="Айдентика и билеты">
+      <img
+        src="/media/wink-80s/identity-system.jpg"
+        alt="Аркадная графика, номерной знак и система вывесок кинотеатра"
+      />
+      <img src="/media/wink-80s/tickets.jpg" alt="Входные билеты кинотеатра Wink" />
+    </section>
+
+    <section class="wink-event-grid" aria-label="Фотографии с мероприятия">
+      {eventPhotos.map(([src, alt]) => (
+        <img src={`/media/wink-80s/${src}`} alt={alt} loading="lazy" />
+      ))}
+    </section>
+
+    <section class="facts" aria-label="Продакшн-факты">
+      <p><MetaLine parts={["Продакшн", "Месяц на проектирование."]} /></p>
+      <p><MetaLine parts={["Продакшн", "Три дня на строительство."]} /></p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/barcode-mysteries", label: "предыдущая работа" }}
+      next={{ href: "/ikea-copywriting", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

@@ -1,0 +1,18 @@
+---
+interface Link {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  previous?: Link;
+  next?: Link;
+}
+
+const { previous, next } = Astro.props;
+---
+
+<footer class="case-navigation">
+  {previous && <a href={previous.href}>&lt;&lt;&lt; {previous.label}</a>}
+  {next && <a href={next.href}>{next.label} &gt;&gt;&gt;</a>}
+</footer>

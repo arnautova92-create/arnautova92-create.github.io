@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const objects = [
+  ["plane-field.png", "Картонный самолёт"],
+  ["shark-field.png", "Фотостенд с картонной акулой"],
+  ["town-field.png", "Картонный город"],
+];
+
+const manuals = [
+  ["manual-overview.png", "Выкройка всех деталей картонного самолёта"],
+  ["manual-steps-12.png", "Шаги 1–2: сборка корпуса"],
+  ["manual-steps-34.png", "Шаги 3–4: колёса и винт"],
+  ["manual-steps-56.png", "Шаги 5–6: крылья, хвост и финальная сборка"],
+];
+---
+
+<BaseLayout title="IKEA · Коробка, которая мечтала летать · Andrei Arnautov">
+  <article class="case" id="ikea-copywriting">
+    <h1><MetaLine parts={["IKEA", "Коробка, которая мечтала летать"]} /></h1>
+
+    <section class="ikea-second-life" aria-label="Ключевой визуал и идеи из картона">
+      <img
+        src="/media/ikea-copywriting/second-life-key-visual-trimmed.png"
+        alt="Ключевой визуал IKEA «Коробка, которая мечтала летать»"
+      />
+      <div class="ikea-object-column">
+        {objects.map(([src, alt]) => (
+          <img src={`/media/ikea-copywriting/${src}`} alt={alt} />
+        ))}
+      </div>
+    </section>
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        Что делать с картонными коробками после доставки? Мы с IKEA подошли к
+        проблеме творчески.
+      </p>
+      <p>
+        И собрали инструкции для семейных поделок из картона на основе идей от
+        участников IKEA Family.
+      </p>
+    </section>
+
+    <section class="ikea-manual-grid" aria-label="Инструкция картонного самолёта">
+      {manuals.map(([src, alt]) => (
+        <img src={`/media/ikea-copywriting/${src}`} alt={alt} loading="lazy" />
+      ))}
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/wink-80s", label: "предыдущая работа" }}
+      next={{ href: "/beeline", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

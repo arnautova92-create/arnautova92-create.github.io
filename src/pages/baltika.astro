@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+---
+
+<BaseLayout title="Baltika 0 · Fruity · Andrei Arnautov">
+  <article class="case" id="baltika">
+    <h1><MetaLine parts={["Baltika 0", "Fruity"]} /></h1>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src="/media/baltika/fruity.mp4"
+        poster="/media/baltika/poster-fruity.jpg"
+        label="«Fruity»"
+      />
+      <figcaption class="track-label">
+        <MetaLine parts={["Ролик", "«Fruity»", "0:20"]} />
+      </figcaption>
+    </figure>
+
+    <section class="story-grid story-grid-tail" aria-label="Описание кампании">
+      <p>
+        Вкус фруктовой безалкогольной «Балтики» не похож ни на один другой
+        напиток.
+      </p>
+      <p>
+        Чтобы познакомить аудиторию с удивительной новинкой, мы показали главное
+        — эмоции.
+      </p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/megafon", label: "предыдущая работа" }}
+      next={{ href: "/", label: "все работы" }}
+    />
+  </article>
+</BaseLayout>

@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const coverageColumns = [
+  [
+    ["coverage-afisha-daily.png", "Afisha Daily о проекте CRAVE"],
+    ["coverage-kommersant.png", "«Коммерсантъ» о проекте CRAVE"],
+    ["coverage-plus-one.png", "Plus One о проекте CRAVE"],
+    ["coverage-yandex-news.png", "Публикации о CRAVE в «Яндекс Новостях»"],
+  ],
+  [
+    ["coverage-komsomolskaya-pravda.png", "«Комсомольская правда» о проекте CRAVE"],
+    ["coverage-arguments-of-week.png", "«Аргументы недели» о проекте CRAVE"],
+    ["coverage-sostav.png", "Sostav о проекте CRAVE"],
+    ["coverage-rambler-research.png", "«Рамблер» об исследовании CRAVE"],
+  ],
+  [
+    ["coverage-mk.png", "«Московский комсомолец» о проекте CRAVE"],
+    ["coverage-msn.png", "MSN о проекте CRAVE"],
+    ["coverage-123ru.png", "123.ru о проекте CRAVE"],
+    ["coverage-vechernaya-moskva.png", "«Вечерняя Москва» о проекте CRAVE"],
+  ],
+];
+---
+
+<BaseLayout title="CRAVE · Crave test · Andrei Arnautov">
+  <article class="case" id="crave">
+    <h1><MetaLine parts={["CRAVE", "Crave test"]} /></h1>
+
+    <figure class="film-single">
+      <MediaPlayer
+        kind="video"
+        src="/media/crave/case-film.mp4"
+        poster="/media/crave/case-film-generator-poster.jpg"
+        label="Кейс-фильм"
+      />
+    </figure>
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        Бренд высокобелковых кормов CRAVE говорит о том, что нужно доверять
+        инстинктам домашних питомцев. Внутри каждого домашнего питомца живёт
+        дикий зверь, и мы в этом убедились лично!
+      </p>
+      <p>
+        Мы провели эксперимент. Сравнили геномы кота Фёдора и ретривера Инди с
+        геномами их диких предков и нашли процент сходства. А потом каждый
+        желающий смог провести личный эксперимент: загрузить фото своего питомца
+        в онлайн-генератор и получить эволюционное древо, чтобы узнать все детали
+        его происхождения.
+      </p>
+    </section>
+
+    <section class="crave-hero crave-finale" aria-label="Участники исследования CRAVE">
+      <figure>
+        <img
+          src="/media/crave/lisovets-fedor.jpg"
+          alt="Владислав Лисовец с котом Фёдором"
+          loading="lazy"
+        />
+        <figcaption><MetaLine parts={["Фёдор", "99,5% сходства генома с дикой лесной кошкой."]} /></figcaption>
+      </figure>
+      <figure>
+        <img
+          src="/media/crave/malygina-indy.jpg"
+          alt="Дарья Малыгина с ретривером Инди"
+          loading="lazy"
+        />
+        <figcaption><MetaLine parts={["Инди", "99,6% сходства генома с серым волком."]} /></figcaption>
+      </figure>
+    </section>
+
+    <section class="crave-press-wall" aria-label="Избранные публикации в медиа">
+      {coverageColumns.map((column) => (
+        <div class="crave-press-column">
+          {column.map(([src, alt]) => (
+            <figure><img src={`/media/crave/${src}`} alt={alt} loading="lazy" /></figure>
+          ))}
+        </div>
+      ))}
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/beeline", label: "предыдущая работа" }}
+      next={{ href: "/megafon", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>

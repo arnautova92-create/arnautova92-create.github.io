@@ -1,0 +1,174 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import CaseNavigation from "../components/CaseNavigation.astro";
+import MediaPlayer from "../components/MediaPlayer.astro";
+import MetaLine from "../components/MetaLine.astro";
+
+const media = "/media/barcode-mysteries";
+const episodes = [
+  ["episode-01.mp3", "Загадка мандаринов", "5:00"],
+  ["episode-02.mp3", "HR-детектив", "5:30"],
+  ["episode-03.mp3", "Заговор маркетологов", "6:03"],
+  ["episode-04.mp3", "Загадочный всплеск", "6:33"],
+  ["episode-05.mp3", "Неизвестная посылка", "4:45"],
+];
+const portraits = [
+  ["polaroid-15.jpg", "Полароидный портрет Леонида Каневского"],
+  ["polaroid-16.jpg", "Полароидный портрет Леонида Каневского"],
+  ["polaroid-17.jpg", "Полароидный портрет Леонида Каневского"],
+  ["polaroid-110.jpg", "Полароидный портрет Саши Сулим"],
+  ["polaroid-111.jpg", "Полароидный портрет Саши Сулим"],
+  ["polaroid-19.jpg", "Полароидный портрет Саши Сулим"],
+];
+const gamePhotos = [
+  ["game-02.jpg", "Коробка игры «Закулисье ритейла» крупным планом"],
+  ["game-03.jpg", "Игроки раскладывают карточки на столе"],
+  ["game-04.jpg", "Карточки с подсказками под лупой"],
+];
+---
+
+<BaseLayout title="X5 · Закулисье ритейла · Andrei Arnautov">
+  <article class="case" id="barcode-mysteries">
+    <h1><MetaLine parts={["X5", "Закулисье ритейла"]} /></h1>
+
+    <section class="part" aria-label="Часть 01. Подкаст «Тайна штрихкода»">
+      <p class="part-label"><MetaLine parts={["Часть 01", "Подкаст «Тайна штрихкода»"]} /></p>
+    </section>
+
+    <section class="album" aria-label="Обложка и вступление подкаста">
+      <img
+        class="album-cover"
+        src={`${media}/podcast-cover.png`}
+        alt="Обложка подкаста «Тайна штрихкода»"
+      />
+      <div class="album-tracks">
+        <div class="album-track">
+          <p class="track-label"><MetaLine parts={["Вступление", "0:49"]} /></p>
+          <MediaPlayer kind="audio" src={`${media}/intro.mp3`} label="Вступление подкаста" />
+        </div>
+      </div>
+    </section>
+
+    <section class="story-grid" aria-label="Описание кейса">
+      <p>
+        Как рассказать о том, что X5 — это умный ритейл и что компания ищет
+        самых разных специалистов, от бариста до датасайентиста? Мы погрузились
+        в закулисье ритейла и исследовали деятельность компании всерьёз.
+      </p>
+      <p>
+        Так появился тру-крайм-подкаст от Леонида Каневского и Саши Сулим. В
+        пяти коротких выпусках они помогли выяснить, куда на самом деле едут
+        мандарины, чем занят HR и что стоит за странным всплеском спроса.
+      </p>
+    </section>
+
+    <section class="backstage-pair" aria-label="Видео проекта">
+      <figure>
+        <MediaPlayer
+          kind="video"
+          src={`${media}/kanevsky-promo.mp4`}
+          poster={`${media}/poster-kanevsky.jpg`}
+          label="Проморолик с Леонидом Каневским"
+        />
+        <figcaption class="track-label">
+          Леонид Каневский лично пригласил аудиторию погрузиться в закулисье
+          ритейла
+        </figcaption>
+      </figure>
+      <figure>
+        <MediaPlayer
+          kind="video"
+          src={`${media}/in-store.mp4`}
+          poster={`${media}/poster-in-store.jpg`}
+          label="Объявление в торговом зале «Перекрёстка»"
+        />
+        <figcaption class="track-label">
+          Короткие версии эпизодов стали приглашениями на работу в торговых сетях
+          X5
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="polaroid-grid" aria-label="Полароидные портреты">
+      {portraits.map(([src, alt]) => (
+        <img src={`${media}/${src}`} alt={alt} loading="lazy" />
+      ))}
+    </section>
+
+    <section class="episode-list episode-list-cover" aria-label="Все пять выпусков">
+      <img
+        class="episode-cover"
+        src={`${media}/case-folder.jpg`}
+        alt="Папка «Дело N» с полароидными снимками ведущих"
+        loading="lazy"
+      />
+      <div class="episode-body">
+        <p class="chapter-label">Послушать все пять выпусков</p>
+        {episodes.map(([file, title, length]) => (
+          <div class="episode-row episode-row-plain">
+            <p class="episode-title"><MetaLine parts={[title, length]} /></p>
+            <MediaPlayer kind="audio" src={`${media}/${file}`} label={title} />
+          </div>
+        ))}
+        <p class="episode-platforms">
+          <a href="https://tolk.earth/tainashtrikhcoda" target="_blank" rel="noreferrer">
+            Страница проекта&nbsp;&gt;&gt;&gt;
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section class="facts" aria-label="Результаты подкаста">
+      <p><MetaLine parts={["Результаты", "73% дослушали 28-минутный сезон до конца."]} /></p>
+      <p><MetaLine parts={["Результаты", "8,5 тыс. слушателей к концу января."]} /></p>
+      <p><MetaLine parts={["Результаты", "Топ-5 подкастов января по версии Podcasts.ru."]} /></p>
+      <p><MetaLine parts={["Результаты", "1,3 млн охвата и 40+ публикаций."]} /></p>
+      <p><MetaLine parts={["Результаты", "Джинглы в 23 000+ торговых точках X5."]} /></p>
+      <p><MetaLine parts={["Награда", "Бронза «МИКС Россия 2025» — Best Use of Digital Audio Advertising."]} /></p>
+    </section>
+
+    <section class="part" aria-label="Часть 02. Игра">
+      <p class="part-label"><MetaLine parts={["Часть 02", "Игра"]} /></p>
+    </section>
+
+    <img
+      class="game-hero"
+      src={`${media}/game-01.jpg`}
+      alt="Настольная игра «Закулисье ритейла»: коробка среди разложенных карточек"
+      loading="lazy"
+    />
+
+    <section class="story-grid" aria-label="Описание игры">
+      <p>
+        Расследование получило интерактивное продолжение. В качестве мерча к
+        подкасту мы выпустили настольную игру в жанре «данетки»: 50 карточек по
+        мотивам реальных ситуаций из практики ритейла.
+      </p>
+      <p>
+        Игроки взяли инициативу в свои руки и задавали вопросы, на которые можно
+        ответить только «да», «нет» или «не имеет значения». Леонид Каневский и
+        Саша Сулим, которые на тот момент глубоко погрузились в закулисье
+        ритейла, оставили на карточках подсказки для начинающих детективов.
+      </p>
+    </section>
+
+    <section class="game-photos" aria-label="Материалы игры">
+      {gamePhotos.map(([src, alt]) => (
+        <img src={`${media}/${src}`} alt={alt} loading="lazy" />
+      ))}
+    </section>
+
+    <section class="facts" aria-label="Результаты игры">
+      <p><MetaLine parts={["Результаты", "50 публикаций."]} /></p>
+      <p><MetaLine parts={["Результаты", "152 тыс. просмотров в соцсетях, 120% плана."]} /></p>
+      <p><MetaLine parts={["Результаты", "79% однозначно позитивных реакций."]} /></p>
+      <p><MetaLine parts={["Признание", "Три позиции в шорт-листе PROBA Awards 2025 — маркетинговые коммуникации, HR-бренд и инфлюенс-маркетинг."]} /></p>
+      <p><MetaLine parts={["Награда", "Победа в номинации «Красота игры» — Премия РАСО 2025."]} /></p>
+    </section>
+
+    <CaseNavigation
+      previous={{ href: "/neskazki", label: "предыдущая работа" }}
+      next={{ href: "/wink-80s", label: "следующая работа" }}
+    />
+  </article>
+</BaseLayout>
