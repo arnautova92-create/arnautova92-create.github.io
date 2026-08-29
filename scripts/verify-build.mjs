@@ -66,6 +66,9 @@ if (!/^permissions:\s*\{\}\s*$/m.test(workflow)) failures.push("workflow permiss
 for (const match of workflow.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/g)) {
   if (!/^[0-9a-f]{40}$/.test(match[1])) failures.push(`unpinned GitHub Action: ${match[0]}`);
 }
+if (!/uses:\s*actions\/checkout@[^\n]+\n\s+with:\s*\n\s+persist-credentials:\s*false/m.test(workflow)) {
+  failures.push("checkout credentials must not persist");
+}
 
 const walk = (directory) =>
   readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
