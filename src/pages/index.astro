@@ -6,14 +6,14 @@ const works = [
     href: "/zewa",
     brand: "Zewa",
     title: "Unfair Game",
-    cover: "/media/_covers/zewa-case-film.jpg",
+    thumbnail: "zewa-case-film",
     alt: "Кадр из кейс-фильма Zewa: персонаж стоит на финишной клетке настольной игры",
   },
   {
     href: "/neskazki",
     brand: "X5",
     title: "НЕсказки",
-    cover: "/media/_covers/neskazki-cover.jpg",
+    thumbnail: "neskazki-cover",
     alt: "Иллюстрированная обложка подкаста НЕсказки с животными у открытого окна",
     focus: "50% 12%",
   },
@@ -21,42 +21,42 @@ const works = [
     href: "/barcode-mysteries",
     brand: "X5",
     title: "Закулисье ритейла",
-    cover: "/media/_covers/barcode-hosts.jpg",
+    thumbnail: "barcode-hosts",
     alt: "Саша Сулим и Леонид Каневский на обложке подкаста",
   },
   {
     href: "/megafon",
     brand: "Megafon",
     title: "Video",
-    cover: "/media/_covers/megafon-speed.jpg",
+    thumbnail: "megafon-speed",
     alt: "Кадр из «Скорости»: Азамат смотрит на смартфон в прихожей",
   },
   {
     href: "/baltika",
     brand: "Baltika 0",
     title: "Fruity",
-    cover: "/media/baltika/grapefruit.jpg",
+    thumbnail: "baltika-grapefruit",
     alt: "Грейпфрутовая Baltika 0: рыжая девушка с банкой и мнемоника оГОоо",
   },
   {
     href: "/beeline",
     brand: "Beeline",
     title: "Video",
-    cover: "/media/_covers/beeline-gigapad.jpg",
+    thumbnail: "beeline-gigapad",
     alt: "Кадр из «Гигапада»: семья на веранде ловит снежинки «ГБ»",
   },
   {
     href: "/wink-80s",
     brand: "Wink",
     title: "80's Cinema Theatre",
-    cover: "/media/_covers/wink-pavilion.jpg",
+    thumbnail: "wink-pavilion",
     alt: "Павильон Wink на Comic Con: неоновая маркиза, касса и машина 1980-х",
   },
   {
     href: "/ikea-copywriting",
     brand: "IKEA",
     title: "Коробка, которая мечтала летать",
-    cover: "/media/ikea-copywriting/plane-field.png",
+    thumbnail: "ikea-plane-field",
     alt: "Картонный самолётик из коробки IKEA",
     light: true,
   },
@@ -64,7 +64,7 @@ const works = [
     href: "/crave",
     brand: "CRAVE",
     title: "Crave test",
-    cover: "/media/crave/lisovets-fedor.jpg",
+    thumbnail: "crave-lisovets-fedor",
     alt: "Владислав Лисовец поднимает кота Фёдора над головой",
     focus: "50% 24%",
   },
@@ -79,8 +79,13 @@ const works = [
           <a class="work-card" href={work.href}>
             <img
               class:list={["work-cover", { "work-cover-light": work.light }]}
-              src={work.cover}
+              src={`/media/_covers/home/${work.thumbnail}-640.webp`}
+              srcset={`/media/_covers/home/${work.thumbnail}-640.webp 640w, /media/_covers/home/${work.thumbnail}-1200.webp 1200w`}
+              sizes="(max-width: 560px) calc(100vw - 64px), (max-width: 900px) calc((100vw - 78px) / 2), (max-width: 1056px) calc((100vw - 112px) / 3), 315px"
               alt={work.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+              fetchpriority={index === 0 ? "high" : undefined}
               style={work.focus ? `object-position: ${work.focus}` : undefined}
             />
             <span class="work-title">
