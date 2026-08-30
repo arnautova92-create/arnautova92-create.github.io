@@ -55,6 +55,16 @@ for (const route of routes) {
       : routeFile(clean);
     if (!existsSync(resolved)) failures.push(`broken internal target on ${route}: ${target}`);
   }
+
+  for (const match of html.matchAll(/srcset="([^"]+)"/g)) {
+    for (const candidate of match[1].split(",")) {
+      const target = candidate.trim().split(/\s+/, 1)[0];
+      if (!target.startsWith("/") || target.startsWith("//")) continue;
+      const clean = target.split(/[?#]/, 1)[0];
+      const resolved = join(dist, clean.slice(1));
+      if (!existsSync(resolved)) failures.push(`broken srcset target on ${route}: ${target}`);
+    }
+  }
 }
 
 if (!existsSync(join(dist, "site.js"))) failures.push("missing external site.js");

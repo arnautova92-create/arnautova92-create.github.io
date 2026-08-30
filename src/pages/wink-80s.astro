@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CaseNavigation from "../components/CaseNavigation.astro";
 import MetaLine from "../components/MetaLine.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const eventPhotos = [
   ["event-001.jpg", "Косплеер в маске Майкла Майерса у неоновой афиши «Индианы Джонса»"],
@@ -21,10 +22,13 @@ const eventPhotos = [
   <article class="case" id="wink-80s">
     <h1><MetaLine parts={["Wink", "80's Cinema Theatre"]} /></h1>
 
-    <img
+    <ResponsiveImage
       class="case-hero-image"
-      src="/media/wink-80s/hero.jpg"
+      base="/media/_optimized/wink-80s/hero"
+      sizes="(max-width: 900px) calc(100vw - 36px), 800px"
       alt="Павильон Wink с кинотеатром 1980-х на Comic Con Russia"
+      loading="eager"
+      fetchpriority="high"
     />
 
     <section class="story-grid" aria-label="Описание кейса">
@@ -42,19 +46,22 @@ const eventPhotos = [
     </section>
 
     <section class="wink-reference-pair" aria-label="Отсылки к поп-культуре">
-      <img
-        src="/media/wink-80s/reference-detail.jpg"
+      <ResponsiveImage
+        base="/media/_optimized/wink-80s/reference-detail"
+        sizes="(max-width: 900px) calc(100vw - 36px), 392px"
         alt="Отсылка к Марти Макфлаю рядом с неоновыми киноафишами"
       />
-      <img
-        src="/media/wink-80s/costume.jpg"
+      <ResponsiveImage
+        base="/media/_optimized/wink-80s/costume"
+        sizes="(max-width: 900px) calc(100vw - 36px), 392px"
         alt="Костюмированный гость Comic Con в пространстве кинотеатра 1980-х"
       />
     </section>
 
     <section class="wink-process" aria-label="Манифест и билеты">
-      <img
-        src="/media/wink-80s/myers-ticket.jpg"
+      <ResponsiveImage
+        base="/media/_optimized/wink-80s/myers-ticket"
+        sizes="(max-width: 900px) calc(100vw - 36px), 392px"
         alt="Гость в образе Майкла Майерса рассматривает билет у кассы кинотеатра"
       />
       <div class="wink-process-copy">
@@ -68,16 +75,26 @@ const eventPhotos = [
     </section>
 
     <section class="wink-design-pair" aria-label="Айдентика и билеты">
-      <img
-        src="/media/wink-80s/identity-system.jpg"
+      <ResponsiveImage
+        base="/media/_optimized/wink-80s/identity-system"
+        sizes="(max-width: 900px) calc(100vw - 36px), 392px"
         alt="Аркадная графика, номерной знак и система вывесок кинотеатра"
       />
-      <img src="/media/wink-80s/tickets.jpg" alt="Входные билеты кинотеатра Wink" />
+      <ResponsiveImage
+        base="/media/_optimized/wink-80s/tickets"
+        sizes="(max-width: 900px) calc(100vw - 36px), 392px"
+        alt="Входные билеты кинотеатра Wink"
+      />
     </section>
 
     <section class="wink-event-grid" aria-label="Фотографии с мероприятия">
       {eventPhotos.map(([src, alt]) => (
-        <img src={`/media/wink-80s/${src}`} alt={alt} loading="lazy" />
+        <ResponsiveImage
+          base={`/media/_optimized/wink-80s/${src.replace(".jpg", "")}`}
+          widths={[480, 800]}
+          sizes="(max-width: 900px) calc((100vw - 48px) / 3), 154px"
+          alt={alt}
+        />
       ))}
     </section>
 

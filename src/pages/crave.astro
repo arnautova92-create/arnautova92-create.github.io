@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CaseNavigation from "../components/CaseNavigation.astro";
 import MediaPlayer from "../components/MediaPlayer.astro";
 import MetaLine from "../components/MetaLine.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const coverageColumns = [
   [
@@ -34,7 +35,7 @@ const coverageColumns = [
       <MediaPlayer
         kind="video"
         src="/media/crave/case-film.mp4"
-        poster="/media/crave/case-film-generator-poster.jpg"
+        poster="/media/_optimized/crave/case-film-generator-poster-1200.webp"
         label="Кейс-фильм"
       />
     </figure>
@@ -56,18 +57,18 @@ const coverageColumns = [
 
     <section class="crave-hero crave-finale" aria-label="Участники исследования CRAVE">
       <figure>
-        <img
-          src="/media/crave/lisovets-fedor.jpg"
+        <ResponsiveImage
+          base="/media/_optimized/crave/lisovets-fedor"
+          sizes="(max-width: 900px) calc((100vw - 50px) / 2), 392px"
           alt="Владислав Лисовец с котом Фёдором"
-          loading="lazy"
         />
         <figcaption><MetaLine parts={["Фёдор", "99,5% сходства генома с дикой лесной кошкой."]} /></figcaption>
       </figure>
       <figure>
-        <img
-          src="/media/crave/malygina-indy.jpg"
+        <ResponsiveImage
+          base="/media/_optimized/crave/malygina-indy"
+          sizes="(max-width: 900px) calc((100vw - 50px) / 2), 392px"
           alt="Дарья Малыгина с ретривером Инди"
-          loading="lazy"
         />
         <figcaption><MetaLine parts={["Инди", "99,6% сходства генома с серым волком."]} /></figcaption>
       </figure>
@@ -77,7 +78,14 @@ const coverageColumns = [
       {coverageColumns.map((column) => (
         <div class="crave-press-column">
           {column.map(([src, alt]) => (
-            <figure><img src={`/media/crave/${src}`} alt={alt} loading="lazy" /></figure>
+            <figure>
+              <ResponsiveImage
+                base={`/media/_optimized/crave/${src.replace(".png", "")}`}
+                widths={[480, 800]}
+                sizes="(max-width: 560px) calc(100vw - 68px), (max-width: 900px) calc((100vw - 90px) / 2), 237px"
+                alt={alt}
+              />
+            </figure>
           ))}
         </div>
       ))}

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const byCase = [
   {
@@ -94,7 +95,14 @@ const experience = [
       </div>
 
       <div class="about-photo-frame">
-        <img src="/media/about/portrait.webp" alt="Андрей Арнаутов с вязанием в руках" />
+        <ResponsiveImage
+          base="/media/_optimized/about/portrait"
+          widths={[640]}
+          sizes="280px"
+          alt="Андрей Арнаутов с вязанием в руках"
+          loading="eager"
+          fetchpriority="high"
+        />
       </div>
     </section>
 

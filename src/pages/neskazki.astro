@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CaseNavigation from "../components/CaseNavigation.astro";
 import MediaPlayer from "../components/MediaPlayer.astro";
 import MetaLine from "../components/MetaLine.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const excerpts = [
   ["excerpt-bull.mp3", "Стратегия быка", "0:28"],
@@ -24,8 +25,8 @@ const episodes = [
 ];
 
 const backstage = [
-  ["backstage-01.mp4", "poster-backstage.jpg", "Тизер из студии", "0:30"],
-  ["burunov-invitation.mp4", "poster-invitation.jpg", "Приглашение Бурунова", "1:00"],
+  ["backstage-01.mp4", "poster-backstage-640.webp", "Тизер из студии", "0:30"],
+  ["burunov-invitation.mp4", "poster-invitation-640.webp", "Приглашение Бурунова", "1:00"],
 ];
 ---
 
@@ -41,9 +42,10 @@ const backstage = [
         muted
         playsinline
         preload="metadata"
+        poster="/media/_covers/home/neskazki-cover-1200.webp"
         aria-label="Анимированная обложка НЕсказок"
       >
-        <source src="/media/neskazki/animated-cover.mp4" type="video/mp4" />
+        <source src="/media/_optimized/neskazki/animated-cover.mp4" type="video/mp4" />
       </video>
 
       <div class="album-tracks">
@@ -79,7 +81,7 @@ const backstage = [
           <MediaPlayer
             kind="video"
             src={`/media/neskazki/${file}`}
-            poster={`/media/neskazki/${poster}`}
+            poster={`/media/_optimized/neskazki/${poster}`}
             label={label}
           />
           <figcaption class="track-label"><MetaLine parts={[label, length]} /></figcaption>
@@ -91,7 +93,13 @@ const backstage = [
       <p class="chapter-label">Послушать все пять НЕсказок</p>
       {episodes.map(([file, title, length, animal, alt]) => (
         <div class="episode-row">
-          <img class="episode-animal" src={`/media/neskazki/${animal}`} alt={alt} />
+          <ResponsiveImage
+            class="episode-animal"
+            base={`/media/_optimized/neskazki/${animal.replace(".png", "")}`}
+            widths={[128]}
+            sizes="58px"
+            alt={alt}
+          />
           <p class="episode-title"><MetaLine parts={[title, length]} /></p>
           <MediaPlayer kind="audio" src={`/media/neskazki/${file}`} label={title} />
         </div>

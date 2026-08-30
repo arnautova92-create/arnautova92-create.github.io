@@ -5,9 +5,9 @@ import MediaPlayer from "../components/MediaPlayer.astro";
 import MetaLine from "../components/MetaLine.astro";
 
 const films = [
-  ["speed.mp4", "poster-speed.jpg", "«Скорость»", "0:15"],
-  ["hologram.mp4", "poster-hologram.jpg", "«Выгода»", "0:15"],
-  ["special-reducer.mp4", "poster-special-reducer.jpg", "«Спецуменьшитель»", "0:15"],
+  ["speed.mp4", "poster-speed-1200.webp", "«Скорость»", "0:15"],
+  ["hologram.mp4", "poster-hologram-1200.webp", "«Выгода»", "0:15"],
+  ["special-reducer.mp4", "poster-special-reducer-1200.webp", "«Спецуменьшитель»", "0:15"],
 ];
 ---
 
@@ -22,7 +22,7 @@ const films = [
             <MediaPlayer
               kind="video"
               src={`/media/megafon/${file}`}
-              poster={`/media/megafon/${poster}`}
+              poster={`/media/_optimized/megafon/${poster}`}
               label={title}
             />
             <figcaption class="track-label">
@@ -48,7 +48,7 @@ const films = [
       <MediaPlayer
         kind="video"
         src={`/media/megafon/${films[2][0]}`}
-        poster={`/media/megafon/${films[2][1]}`}
+        poster={`/media/_optimized/megafon/${films[2][1]}`}
         label={films[2][2]}
       />
       <figcaption class="track-label">

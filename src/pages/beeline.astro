@@ -5,8 +5,8 @@ import MediaPlayer from "../components/MediaPlayer.astro";
 import MetaLine from "../components/MetaLine.astro";
 
 const films = [
-  ["gigapad.mp4", "poster-gigapad.jpg", "«Гигапад»", "0:30"],
-  ["devices.mp4", "poster-devices.jpg", "«Три равно один»", "0:20"],
+  ["gigapad.mp4", "poster-gigapad-1200.webp", "«Гигапад»", "0:30"],
+  ["devices.mp4", "poster-devices-1200.webp", "«Три равно один»", "0:20"],
 ];
 ---
 
@@ -18,7 +18,7 @@ const films = [
       <MediaPlayer
         kind="video"
         src={`/media/beeline/${films[0][0]}`}
-        poster={`/media/beeline/${films[0][1]}`}
+        poster={`/media/_optimized/beeline/${films[0][1]}`}
         label={films[0][2]}
       />
       <figcaption class="track-label">
@@ -38,7 +38,7 @@ const films = [
       <MediaPlayer
         kind="video"
         src={`/media/beeline/${films[1][0]}`}
-        poster={`/media/beeline/${films[1][1]}`}
+        poster={`/media/_optimized/beeline/${films[1][1]}`}
         label={films[1][2]}
       />
       <figcaption class="track-label">

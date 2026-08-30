@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import CaseNavigation from "../components/CaseNavigation.astro";
 import MetaLine from "../components/MetaLine.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const objects = [
   ["plane-field.png", "Картонный самолёт"],
@@ -9,11 +10,11 @@ const objects = [
   ["town-field.png", "Картонный город"],
 ];
 
-const manuals = [
-  ["manual-overview.png", "Выкройка всех деталей картонного самолёта"],
-  ["manual-steps-12.png", "Шаги 1–2: сборка корпуса"],
-  ["manual-steps-34.png", "Шаги 3–4: колёса и винт"],
-  ["manual-steps-56.png", "Шаги 5–6: крылья, хвост и финальная сборка"],
+const manuals: Array<[string, string, number]> = [
+  ["manual-overview.png", "Выкройка всех деталей картонного самолёта", 1160],
+  ["manual-steps-12.png", "Шаги 1–2: сборка корпуса", 1112],
+  ["manual-steps-34.png", "Шаги 3–4: колёса и винт", 1066],
+  ["manual-steps-56.png", "Шаги 5–6: крылья, хвост и финальная сборка", 1064],
 ];
 ---
 
@@ -22,13 +23,21 @@ const manuals = [
     <h1><MetaLine parts={["IKEA", "Коробка, которая мечтала летать"]} /></h1>
 
     <section class="ikea-second-life" aria-label="Ключевой визуал и идеи из картона">
-      <img
-        src="/media/ikea-copywriting/second-life-key-visual-trimmed.png"
+      <ResponsiveImage
+        base="/media/_optimized/ikea-copywriting/second-life-key-visual-trimmed"
+        sizes="(max-width: 900px) calc(100vw - 36px), 368px"
         alt="Ключевой визуал IKEA «Коробка, которая мечтала летать»"
+        loading="eager"
+        fetchpriority="high"
       />
       <div class="ikea-object-column">
         {objects.map(([src, alt]) => (
-          <img src={`/media/ikea-copywriting/${src}`} alt={alt} />
+          <ResponsiveImage
+            base={`/media/_optimized/ikea-copywriting/${src.replace(".png", "")}`}
+            widths={src === "plane-field.png" ? [480, 800] : src === "shark-field.png" ? [384] : [568]}
+            sizes="(max-width: 900px) calc((100vw - 104px) / 3), 372px"
+            alt={alt}
+          />
         ))}
       </div>
     </section>
@@ -45,8 +54,13 @@ const manuals = [
     </section>
 
     <section class="ikea-manual-grid" aria-label="Инструкция картонного самолёта">
-      {manuals.map(([src, alt]) => (
-        <img src={`/media/ikea-copywriting/${src}`} alt={alt} loading="lazy" />
+      {manuals.map(([src, alt, width]) => (
+        <ResponsiveImage
+          base={`/media/_optimized/ikea-copywriting/${src.replace(".png", "")}`}
+          widths={[640, Number(width)]}
+          sizes="(max-width: 900px) calc(100vw - 36px), 188px"
+          alt={alt}
+        />
       ))}
     </section>
 

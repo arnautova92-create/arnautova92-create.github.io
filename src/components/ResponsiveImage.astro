@@ -1,0 +1,38 @@
+---
+interface Props {
+  base: string;
+  widths?: number[];
+  alt: string;
+  sizes?: string;
+  loading?: "eager" | "lazy";
+  fetchpriority?: "high" | "low" | "auto";
+  class?: string;
+}
+
+const {
+  base,
+  widths = [640, 1200],
+  alt,
+  sizes,
+  loading = "lazy",
+  fetchpriority,
+  class: className,
+} = Astro.props;
+
+const sortedWidths = [...widths].sort((a, b) => a - b);
+const src = `${base}-${sortedWidths[0]}.webp`;
+const srcset = sortedWidths.length > 1
+  ? sortedWidths.map((width) => `${base}-${width}.webp ${width}w`).join(", ")
+  : undefined;
+---
+
+<img
+  class={className}
+  src={src}
+  srcset={srcset}
+  sizes={srcset ? sizes : undefined}
+  alt={alt}
+  loading={loading}
+  decoding="async"
+  fetchpriority={fetchpriority}
+/>

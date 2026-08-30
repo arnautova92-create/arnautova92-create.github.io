@@ -15,12 +15,12 @@ const { kind, src, label, poster } = Astro.props;
       src={src}
       poster={poster}
       playsinline
-      preload="metadata"
+      preload="none"
       controls
       data-player-media
     />
   ) : (
-    <audio src={src} preload="metadata" controls data-player-media />
+    <audio src={src} preload="none" controls data-player-media />
   )}
   <div class="transport">
     <button

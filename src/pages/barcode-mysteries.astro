@@ -3,8 +3,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import CaseNavigation from "../components/CaseNavigation.astro";
 import MediaPlayer from "../components/MediaPlayer.astro";
 import MetaLine from "../components/MetaLine.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
 
 const media = "/media/barcode-mysteries";
+const optimized = "/media/_optimized/barcode-mysteries";
 const episodes = [
   ["episode-01.mp3", "Загадка мандаринов", "5:00"],
   ["episode-02.mp3", "HR-детектив", "5:30"],
@@ -36,10 +38,13 @@ const gamePhotos = [
     </section>
 
     <section class="album" aria-label="Обложка и вступление подкаста">
-      <img
+      <ResponsiveImage
         class="album-cover"
-        src={`${media}/podcast-cover.png`}
+        base={`${optimized}/podcast-cover`}
+        sizes="(max-width: 900px) calc(100vw - 36px), 400px"
         alt="Обложка подкаста «Тайна штрихкода»"
+        loading="eager"
+        fetchpriority="high"
       />
       <div class="album-tracks">
         <div class="album-track">
@@ -67,7 +72,7 @@ const gamePhotos = [
         <MediaPlayer
           kind="video"
           src={`${media}/kanevsky-promo.mp4`}
-          poster={`${media}/poster-kanevsky.jpg`}
+          poster={`${optimized}/poster-kanevsky-640.webp`}
           label="Проморолик с Леонидом Каневским"
         />
         <figcaption class="track-label">
@@ -79,7 +84,7 @@ const gamePhotos = [
         <MediaPlayer
           kind="video"
           src={`${media}/in-store.mp4`}
-          poster={`${media}/poster-in-store.jpg`}
+          poster={`${optimized}/poster-in-store-640.webp`}
           label="Объявление в торговом зале «Перекрёстка»"
         />
         <figcaption class="track-label">
@@ -91,16 +96,22 @@ const gamePhotos = [
 
     <section class="polaroid-grid" aria-label="Полароидные портреты">
       {portraits.map(([src, alt]) => (
-        <img src={`${media}/${src}`} alt={alt} loading="lazy" />
+        <ResponsiveImage
+          base={`${optimized}/${src.replace(".jpg", "")}`}
+          widths={[480, 800]}
+          sizes="(max-width: 900px) calc((100vw - 50px) / 2), 256px"
+          alt={alt}
+        />
       ))}
     </section>
 
     <section class="episode-list episode-list-cover" aria-label="Все пять выпусков">
-      <img
+      <ResponsiveImage
         class="episode-cover"
-        src={`${media}/case-folder.jpg`}
+        base={`${optimized}/case-folder`}
+        widths={[480]}
+        sizes="196px"
         alt="Папка «Дело N» с полароидными снимками ведущих"
-        loading="lazy"
       />
       <div class="episode-body">
         <p class="chapter-label">Послушать все пять выпусков</p>
@@ -131,11 +142,11 @@ const gamePhotos = [
       <p class="part-label"><MetaLine parts={["Часть 02", "Игра"]} /></p>
     </section>
 
-    <img
+    <ResponsiveImage
       class="game-hero"
-      src={`${media}/game-01.jpg`}
+      base={`${optimized}/game-01`}
+      sizes="(max-width: 900px) calc(100vw - 36px), 800px"
       alt="Настольная игра «Закулисье ритейла»: коробка среди разложенных карточек"
-      loading="lazy"
     />
 
     <section class="story-grid" aria-label="Описание игры">
@@ -154,7 +165,12 @@ const gamePhotos = [
 
     <section class="game-photos" aria-label="Материалы игры">
       {gamePhotos.map(([src, alt]) => (
-        <img src={`${media}/${src}`} alt={alt} loading="lazy" />
+        <ResponsiveImage
+          base={`${optimized}/${src.replace(".jpg", "")}`}
+          widths={[480, 800]}
+          sizes="(max-width: 900px) calc((100vw - 64px) / 3), 256px"
+          alt={alt}
+        />
       ))}
     </section>
 
